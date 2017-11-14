@@ -1,0 +1,9 @@
+services:
+    app.session_provider:
+        class: AppBundle\Security\SessionProvider
+        arguments:
+            ["@doctrine.orm.entity_manager"]
+
+#    api.example:
+#        class: AppBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,5 @@
+services:
+    ws.ping_db:
+        class: SocketBundle\Utils\PingDb
+        arguments:
+            ["@doctrine.orm.entity_manager"]

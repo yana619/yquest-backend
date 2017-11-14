@@ -1,0 +1,5 @@
+services:
+    quest.quest_manager:
+        class: QuestBundle\Utils\QuestManager
+        arguments:
+            ["@doctrine.orm.entity_manager"]
