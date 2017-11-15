@@ -56,29 +56,25 @@ class ResponseFormatter
 
     /**
      * @param array $questions
-     * @param bool $displayAnswer
      * @return array
      */
-    public function questions($questions = [], $displayAnswer = false)
+    public function questions($questions = [])
     {
-        return array_map(function (Question $question) use ($displayAnswer) {
-            return $this->question($question, $displayAnswer);
+        return array_map(function (Question $question) {
+            return $this->question($question);
         }, $questions);
     }
 
     /**
      * @param Question $question
-     * @param bool $displayAnswer
      * @return array
      */
-    public function question(Question $question, $displayAnswer = false)
+    public function question(Question $question)
     {
         return [
             'id' => $question->getUid(),
             'title' => $question->getTitle(),
             'content' => $question->getContent(),
-            'position' => $question->getPosition(),
-            'answer' => ($displayAnswer) ? $question->getAnswer() : null
         ];
     }
 
@@ -88,16 +84,14 @@ class ResponseFormatter
      */
     protected function composeQuestions($chapter)
     {
-        $questions = $this->questions(
-            $this->getAnsweredQuestions($chapter),
-            true
-        );
+        $questions = $this->getAnsweredQuestions($chapter);
 
         if (($activeQuestion = $this->getActiveQuestion($chapter))) {
-            $questions[] = $this->question($activeQuestion, false);
+            $questions[] = $activeQuestion;
         }
 
-        return $questions;
+
+        return  $this->questions($questions);
     }
 
     /**

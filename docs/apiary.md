@@ -104,8 +104,6 @@ Authorization is required for all API methods except of the /auth/sign-in-* meth
                 "id": "questionId",
                 "title":  "Title #1",
                 "content": "Lorem Ipsum ..",
-                "position": 1,
-                "answer": "answer" OR null // null for unanswered questions
             }
         }
 
