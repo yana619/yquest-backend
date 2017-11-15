@@ -38,9 +38,9 @@ class ServerCommand extends ContainerAwareCommand
             'allowedOrigins' => '*'
         )));
 
-        $router = new Router(new UrlMatcher($collection,
-            new RequestContext()
-        ));
+        $router = new Router(
+            new UrlMatcher($collection, new RequestContext())
+        );
 
         $server = IoServer::factory(
             new HttpServer($router),

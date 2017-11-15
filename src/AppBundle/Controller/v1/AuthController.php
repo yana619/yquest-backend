@@ -36,7 +36,7 @@ class AuthController extends FOSRestController
 
         try {
             $client = new Google_Client();
-            $client->setDeveloperKey("AIzaSyCz6Rtkf9HRhRbWNslriG5tCEX8F8UdRDQ");
+            $client->setDeveloperKey($this->container->getParameter('google_api_key'));
 
             $oauth = new Google_Service_Oauth2($client);
             $userInfo = $oauth->tokeninfo(['access_token' => $token]);

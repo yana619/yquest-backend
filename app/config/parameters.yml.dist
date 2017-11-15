@@ -19,3 +19,5 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     socket_port: 1025
+    google_api_key: null
+    allow_origin: '*'
