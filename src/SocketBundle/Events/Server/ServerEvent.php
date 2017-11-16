@@ -14,6 +14,7 @@ class ServerEvent extends Event
 
     const EVENT_REPLY = 'reply';
     const EVENT_ANSWER = 'answer';
+    const EVENT_HINT = 'hint';
     const EVENT_STATE_CONTENT = 'state_content';
     const EVENT_NEW_CONTENT = 'new_content';
 
