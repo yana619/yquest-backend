@@ -29,6 +29,13 @@ class User
     private $googleId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="guest_id", type="string", length=255, nullable=true, unique=true)
+     */
+    private $guestId;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -83,6 +90,30 @@ class User
     public function getGoogleId()
     {
         return $this->googleId;
+    }
+
+    /**
+     * Set guestId
+     *
+     * @param string $guestId
+     *
+     * @return User
+     */
+    public function setGuestId($guestId)
+    {
+        $this->guestId = $guestId;
+
+        return $this;
+    }
+
+    /**
+     * Get guestId
+     *
+     * @return string
+     */
+    public function getGuestId()
+    {
+        return $this->guestId;
     }
 
     /**

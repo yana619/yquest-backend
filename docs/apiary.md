@@ -254,6 +254,22 @@ Errors: 400001, 401002
 + Response 400
 + Response 401
 
+## Sign In Guest [/auth/sign-in-guest]
+### Sign In Guest [POST]
+
++ Request (application/json)
+
+        {
+        }
+        
++ Response 200
+    + Headers
+            Authorization: adsfjkhafadfdaadfa
+    + Body
+
+            {
+            }
+
 # Group WS: Client Event
 ## Join [/join]
 ### Join in Quest [GET]

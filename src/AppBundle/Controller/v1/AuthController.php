@@ -71,4 +71,29 @@ class AuthController extends FOSRestController
 
             return $this->handleView($view);
     }
+
+    /**
+     * @Method("POST")
+     * @Route("/sign-in-guest", name="signInGuest")
+     *
+     * @return Response
+     */
+    public function signInGuestAction()
+    {
+        $guestId = md5(microtime(). rand(100000000, 99999999999) . time());
+        $em = $this->getDoctrine()->getManager();
+
+        $user = new User();
+        $user->setGuestId($guestId);
+        $em->persist($user);
+        $em->flush();
+
+        $authToken = $this->get('app.session_provider')->login($user);
+
+        $view = $this
+            ->view(null, 200)
+            ->setHeader('Authorization', $authToken);
+
+        return $this->handleView($view);
+    }
 }
