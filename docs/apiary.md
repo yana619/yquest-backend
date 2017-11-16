@@ -157,6 +157,18 @@ Authorization is required for all API methods except of the /auth/sign-in-* meth
             },
             "pid": 1
         }
+        
+## Hint
+
+     + JSON
+    
+        {
+            "event": "hint",
+            "payload": {
+                "chapter_uid": "chapter_uid"
+            },
+            "pid": 1
+        }        
 
 # WS Events: Server
 ## Success/Error Reply
@@ -186,6 +198,20 @@ Authorization is required for all API methods except of the /auth/sign-in-* meth
             },
             "pid": 1
         }
+        
+## Hint
+
+    + JSON
+    
+        {
+            "topic": "quest",
+            "event": "hint",
+            "payload": {
+                "status": 200,
+                "response": "message"
+            },
+            "pid": 1
+        }        
         
 ## StateContent
 
@@ -293,6 +319,14 @@ Server responds with Reply Event
 Client send AnswerEvent
 
 Server responds with Answer Event & NewQuestion Event (for success answer)
+
++ Response 200
+
+## Hint [/hint]
+### Get a hint [GET]
+Client send HintEvent
+
+Server responds with Hint Event
 
 + Response 200
 

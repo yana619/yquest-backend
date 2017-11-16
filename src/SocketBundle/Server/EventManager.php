@@ -5,6 +5,7 @@ use AppBundle\Entity\User;
 use AppBundle\Utils\ResponseError;
 use SocketBundle\Events\Client\ClientEvent;
 use SocketBundle\Events\Server\AnswerEvent;
+use SocketBundle\Events\Server\HintEvent;
 use SocketBundle\Events\Server\NewContentEvent;
 use SocketBundle\Events\Server\ReplyEvent;
 use SocketBundle\Events\Server\ServerEvent;
@@ -50,6 +51,10 @@ class EventManager
 
             case 'answer':
                 $this->onAnswer();
+                break;
+
+            case 'hint':
+                $this->onHint();
                 break;
 
             default:
@@ -113,6 +118,27 @@ class EventManager
                 );
             }
 
+        }
+    }
+
+    /**
+     * Answer on Hint Event
+     */
+    private function onHint()
+    {
+        if (!$this->checkAuth()) {
+            return;
+        }
+
+        $payload = $this->clientEvent->getPayload();
+
+        $hint = $this->getService('quest.quest_manager')->getHint(
+            $this->getUserId(),
+            $payload['chapterId'] ?? null
+        );
+
+        if ($hint) {
+            $this->send(new HintEvent($this->clientEvent, $hint));
         }
     }
 

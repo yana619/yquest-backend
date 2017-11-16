@@ -96,6 +96,36 @@ class QuestManager
     }
 
     /**
+     * @param $userId
+     * @param $chapterUid
+     * @return bool|string
+     */
+    public function getHint($userId, $chapterUid)
+    {
+        /** @var Chapter $chapter */
+        $chapter = $this->em
+            ->getRepository(Chapter::class)
+            ->findOneByUid($chapterUid);
+
+        /** @var Question $question */
+        $question = $this->getActiveQuestion($chapter->getId(), $userId);
+
+        if ($question) {
+            if (is_null($question->getAnswer())) {
+                return 'You won. No more hints =)';
+            }
+
+            $hint = $question->getHint();
+
+            return (is_null($hint))
+                ? 'It is easy! You do not need any hints!'
+                : $hint;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @param $chapterId
      * @param $userId
      * @return mixed

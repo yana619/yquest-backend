@@ -59,6 +59,13 @@ class Question
     private $answer;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="hint", type="string", length=255, nullable=true)
+     */
+    private $hint;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="position", type="integer")
@@ -219,6 +226,30 @@ class Question
     public function getAnswer()
     {
         return $this->answer;
+    }
+
+    /**
+     * Set hint
+     *
+     * @param string $hint
+     *
+     * @return Question
+     */
+    public function setHint($hint)
+    {
+        $this->hint = $hint;
+
+        return $this;
+    }
+
+    /**
+     * Get hint
+     *
+     * @return string
+     */
+    public function getHint()
+    {
+        return $this->hint;
     }
 
     /**
